@@ -28,7 +28,6 @@ public class StudentSortingTest {
 				11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
-
 		getImplementation();
 	}
 
@@ -75,6 +74,16 @@ public class StudentSortingTest {
 		Assert.assertArrayEquals(copy1, array);
 	}
 
+	public void genericTestWithPortionOfArray(Integer[] array, int leftIndex, int rigthIndex) {
+		Integer[] copy = {};
+		if(array.length > 0) {
+			copy = Arrays.copyOfRange(array, leftIndex, rigthIndex);
+		}
+		implementation.sort(array, leftIndex, rigthIndex);
+		Arrays.sort(copy);
+		Assert.assertArrayEquals(copy, array);
+	}
+
 	@Test
 	public void testSort01() {
 		genericTest(vetorTamPar);
@@ -107,4 +116,8 @@ public class StudentSortingTest {
 	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS
 	 * UMA PARTE DO ARRAY.
 	 */
+	@Test
+	public void testSort06() {
+		genericTestWithPortionOfArray(vetorTamImpar, 0, 1);
+	}
 }
